@@ -20,3 +20,43 @@ $lang['email_exit_status'] = "Code d'&eacute;tat de sortie : %s";
 
 /* End of file email_lang.php */
 /* Location: ./system/language/french/email_lang.php */
+
+
+<?php
+
+include_once "commun.inc.php";
+
+session_start ();
+
+
+if ($_REQUEST['utm_aff']!="")
+{
+	$_SESSION['utm_aff'] = $_REQUEST['utm_aff'];
+	setcookie("utm_aff", $_REQUEST['utm_aff'], time()+2592000); // 30 jours  
+	
+	$_SESSION['utm_source'] = $_REQUEST['utm_source'];
+	setcookie("utm_source", $_REQUEST['utm_source'], time()+2592000);   // 30 jours
+
+	
+	$_SESSION['utm_campaign'] = $_REQUEST['utm_campaign'];
+	setcookie("utm_campaign", $_REQUEST['utm_campaign'], time()+2592000);   // 30 jours
+	
+	$_SESSION['utm_medium'] = $_REQUEST['utm_medium'];
+	setcookie("utm_medium", $_REQUEST['utm_medium'], time()+2592000);   // 30 jours
+	 
+	// insertion du clic 
+	AddClicCampaign ($_REQUEST['utm_campaign'], $_SERVER['REMOTE_ADDR'], 
+	$_REQUEST['EMAIL'], $param['PK_SITE'],$_REQUEST['utm_source'],$_REQUEST['utm_medium'], $_REQUEST['utm_aff'],$_REQUEST['NAME'] );
+
+}
+else if (isset($_COOKIE["utm_aff"]))
+{
+	$_SESSION['utm_aff'] = $_COOKIE['utm_aff'];
+	$_SESSION['utm_source'] = $_COOKIE['utm_source'];
+	$_SESSION['utm_campaign'] = $_COOKIE['utm_campaign'];
+	$_SESSION['utm_medium'] = $_COOKIE['utm_medium'];
+
+}
+
+
+?>
