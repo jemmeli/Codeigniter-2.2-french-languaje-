@@ -20,11 +20,3 @@ $lang['email_exit_status'] = "Code d'&eacute;tat de sortie : %s";
 
 /* End of file email_lang.php */
 /* Location: ./system/language/french/email_lang.php */
-
-
-
-echo'url : '.$URLP.'?'.$POSTVALUE;
-echo '<hr>';
-echo'<hr>$resultat::<pre>';print_r($resultat);echo'</pre><hr>';
-echo'<hr>$result::<pre>';print_r($result);echo'</pre><hr>';
-die();
